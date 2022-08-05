@@ -36,7 +36,7 @@ app.use("/public", express.static("public"));
 
 app.use("/api", (req, res, next) => "im alive");
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8083;
 
 const server = app.listen(PORT, () => {
   console.log(`Server listening on port 🙈: ${PORT}`);
