@@ -34,6 +34,8 @@ const postOne = async (req, res, next) => {
       userEmail.mailContacto = req.body.mailContacto;
       const userToSave = await userEmail.save()
       res.status(201).json(userToSave)
+    } else {
+      res.json({msg: "El usuario ya existe"})
     }
   } catch (error) {
     res.send(error)
