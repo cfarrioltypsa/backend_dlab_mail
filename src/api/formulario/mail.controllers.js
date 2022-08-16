@@ -28,15 +28,17 @@ const postOne = async (req, res, next) => {
 
   try {
     const userEmail = new Mail();
-    const userExists = await Mail.findOne({mailContacto: req.body.mailContacto })
+    userEmail.mailContacto = req.body.mailContacto;
+    const userExists = await Mail.findOne({mailContacto: userEmail.mailContacto })
 
-    if (!userExists) {
-      userEmail.mailContacto = req.body.mailContacto;
+    if (userExists) {
+      return
+    } 
+    
+    
       const userToSave = await userEmail.save()
       res.status(201).json(userToSave)
-    } else {
-      res.json({msg: "El usuario ya existe"})
-    }
+      
   } catch (error) {
     res.send(error)
   }
